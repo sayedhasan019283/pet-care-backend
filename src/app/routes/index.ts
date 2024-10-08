@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import { AuthRoutes } from '../modules/auth/auth.route';
 import { CategoryRoutes } from '../modules/category/category.route';
-import { AnimalRoutes } from '../modules/animal/animal.route';
 import { CommentRoutes } from '../modules/comment/comment.route';
 import { paymentRoute } from '../modules/payment/payment.route';
 import { UserRoutes } from '../modules/user/user.route';
+import { AnimalRoutes } from '../modules/animal/animal.route';
 
 const router = Router();
 
