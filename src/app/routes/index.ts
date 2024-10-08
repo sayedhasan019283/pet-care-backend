@@ -1,10 +1,11 @@
 import { Router } from 'express';
 import { AuthRoutes } from '../modules/auth/auth.route';
+
+import { UserRoutes } from '../modules/user/user.route';
+import { PostRoutes } from '../modules/post/post.route';
 import { CategoryRoutes } from '../modules/category/category.route';
 import { CommentRoutes } from '../modules/comment/comment.route';
 import { paymentRoute } from '../modules/payment/payment.route';
-import { UserRoutes } from '../modules/user/user.route';
-import { AnimalRoutes } from '../modules/animal/animal.route';
 
 const router = Router();
 
@@ -22,8 +23,8 @@ const moduleRoutes = [
     route: CategoryRoutes,
   },
   {
-    path: '/animal',
-    route: AnimalRoutes,
+    path: '/post',
+    route: PostRoutes,
   },
   {
     path: '/comment',

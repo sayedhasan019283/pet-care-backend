@@ -1,8 +1,8 @@
 import { Schema } from 'mongoose';
-import { TAnimal } from './animal.interface';
+import { TPost } from './post.interface';
 import { model } from 'mongoose';
 
-const animalSchema = new Schema<TAnimal>(
+const postSchema = new Schema<TPost>(
   {
     image: {
       type: String,
@@ -39,4 +39,4 @@ const animalSchema = new Schema<TAnimal>(
   },
 );
 
-export const Animal = model<TAnimal>('Animal', animalSchema);
+export const PostModel = model<TPost>('Post', postSchema);

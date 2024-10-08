@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-const createAnimalSchema = z.object({
+const createPostSchema = z.object({
   body: z.object({
     description: z.string(),
     image: z.string(),
@@ -9,7 +9,7 @@ const createAnimalSchema = z.object({
   }),
 });
 
-const updateAnimalSchema = z.object({
+const updatePostSchema = z.object({
   body: z.object({
     description: z.string().optional(),
     image: z.string().optional(),
@@ -17,7 +17,7 @@ const updateAnimalSchema = z.object({
   }),
 });
 
-export const animalValidations = {
-  createAnimalSchema,
-  updateAnimalSchema,
+export const postValidations = {
+  createPostSchema,
+  updatePostSchema,
 };

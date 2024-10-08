@@ -1,10 +1,10 @@
 import httpStatus from 'http-status';
 import catchAsync from '../../utils/catchAsync';
 import sendResponse from '../../utils/sendResponse';
-import { animalServices } from './animal.service';
+import { animalServices } from './post.service';
 
-const createAnimal = catchAsync(async (req, res) => {
-  const result = await animalServices.createAnimalIntoDB(req.body);
+const createPost = catchAsync(async (req, res) => {
+  const result = await animalServices.createPostIntoDB(req.body);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -14,8 +14,8 @@ const createAnimal = catchAsync(async (req, res) => {
   });
 });
 
-const getAllAnimal = catchAsync(async (req, res) => {
-  const result = await animalServices.getAllAnimalFromDB();
+const getAllPost = catchAsync(async (req, res) => {
+  const result = await animalServices.getAllPostFromDB();
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -25,8 +25,8 @@ const getAllAnimal = catchAsync(async (req, res) => {
   });
 });
 
-const findById = catchAsync(async (req, res) => {
-  const result = await animalServices.animalFindById(req.params.id);
+const findPostById = catchAsync(async (req, res) => {
+  const result = await animalServices.postFindById(req.params.id);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -36,11 +36,11 @@ const findById = catchAsync(async (req, res) => {
   });
 });
 
-const updateOwnPost = catchAsync(async (req, res) => {
+const updatePostById = catchAsync(async (req, res) => {
   const postId = req.params.id;
   const { userId } = req.user;
 
-  const result = await animalServices.userUpdateHisPostFromDB(
+  const result = await animalServices.updatePostFromDB(
     postId,
     userId,
     req.body,
@@ -54,11 +54,11 @@ const updateOwnPost = catchAsync(async (req, res) => {
   });
 });
 
-const deleteOwnPost = catchAsync(async (req, res) => {
+const deletePost = catchAsync(async (req, res) => {
   const postId = req.params.id;
   const { userId } = req.user;
 
-  const result = await animalServices.userDeleteHisOwnPost(postId, userId);
+  const result = await animalServices.deletePost(postId, userId);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -94,9 +94,9 @@ const deletePostByAdmin = catchAsync(async (req, res) => {
   });
 });
 
-const like = catchAsync(async (req, res) => {
+const upVote = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const result = await animalServices.incrementLike(id);
+  const result = await animalServices.incrementUpVote(id);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -106,9 +106,9 @@ const like = catchAsync(async (req, res) => {
   });
 });
 
-const disLike = catchAsync(async (req, res) => {
+const downVote = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const result = await animalServices.incrementDislike(id);
+  const result = await animalServices.incrementDownVote(id);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -118,14 +118,15 @@ const disLike = catchAsync(async (req, res) => {
   });
 });
 
-export const animalControllers = {
-  createAnimal,
-  getAllAnimal,
-  updateOwnPost,
+export const postControllers = {
+  createPost,
+  getAllPost,
+  updatePostById,
   updatePostByAdmin,
-  deleteOwnPost,
+  deletePost,
   deletePostByAdmin,
-  like,
-  disLike,
-  findById
+  upVote,
+  downVote,
+  findPostById
+
 };
